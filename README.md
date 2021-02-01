@@ -1,2 +1,2 @@
 # weight_app
-app for weight control
+Веб-приложение для контроля веса
