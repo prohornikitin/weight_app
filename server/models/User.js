@@ -8,11 +8,11 @@ const userSchema = Schema({
       weight: {
         type: Number,
         min: 0,
-    },
-    date: {
-      type: Date,
-      default: Date.now,
-    },
+      },
+      date: {
+        type: Date,
+        default: Date.now,
+      },
     }
   ]
 });

@@ -27,7 +27,7 @@ class SignInForm extends React.Component {
 
     trySignIn() {
         this.setState({errorMessage: '', successMessage: ''})
-        if(this.passwordRef.current.isValid()) {
+        if(this.passwordRef.current.isValid() && this.emailRef.current.isValid()) {
             axios.post('/signin', {
                 email: this.emailRef.current.getValue(),
                 password: this.passwordRef.current.getValue(),
@@ -38,7 +38,7 @@ class SignInForm extends React.Component {
                     $("#signInForm")
                         .delay(500)
                         .fadeOut(500)
-                        this.onAuth()
+                        this.onAuth(response.data.user);
                 } else {
                     throw response.data.error
                 }
@@ -51,21 +51,23 @@ class SignInForm extends React.Component {
 
     trySignUp() {
         this.setState({errorMessage: '', successMessage: ''})
-        axios.post('/signup', {
-            email: this.emailRef.current.getValue(),
-            password: this.passwordRef.current.getValue(),
-        })
-        .then((response) => {
-            this.setState({errorMessage: '', successMessage: ''})
-            if(response.data.status === 'success') {
-                this.setState({successMessage: 'Successfully registered'})
-            } else {
-                throw response.data.error
-            }
-        })
-        .catch((error) => {
-            this.setState({errorMessage: error})
-        });
+        if(this.passwordRef.current.isValid() && this.emailRef.current.isValid()) {
+            axios.post('/signup', {
+                email: this.emailRef.current.getValue(),
+                password: this.passwordRef.current.getValue(),
+            })
+            .then((response) => {
+                this.setState({errorMessage: '', successMessage: ''})
+                if(response.data.status === 'success') {
+                    this.setState({successMessage: 'Successfully registered'})
+                } else {
+                    throw response.data.error
+                }
+            })
+            .catch((error) => {
+                this.setState({errorMessage: error})
+            });
+        }
     }
 
  

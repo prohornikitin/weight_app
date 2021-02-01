@@ -14,7 +14,7 @@ class PasswordInput extends React.Component {
         this.handleInputChange = this.handleInputChange.bind(this);
         this.state = {
             value: '',
-            errors: '',
+            errors: this.#getFormattedErrors(''),
         };
     }
 

@@ -14,7 +14,7 @@ class EmailInput extends React.Component {
         this.handleInputChange = this.handleInputChange.bind(this);
         this.state = {
             value: '',
-            errors: '',
+            errors: this.#getFormattedErrors(''),
         };
     }
 
@@ -67,7 +67,7 @@ class EmailInput extends React.Component {
     
     render() {
         return (
-                <input type="email" onChange={this.handleInputChange} placeholder="Email address" required
+                <input type="email" onChange={this.handleInputChange} placeholder={"Email address"} required
                         id={this.props.id} name={this.props.name} className={this.props.className}
                         data-toggle="popover" data-placement="left" data-html="true" data-content={this.state.errors} data-trigger="manual"/>
         );

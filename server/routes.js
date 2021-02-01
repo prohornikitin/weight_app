@@ -14,10 +14,9 @@ exports.signIn = function (request, response) {
     } else if(!user) {
       response.send({
         status: 'fail',
-        error: 'user not found'
+        error: 'Invalid email or password',
       });
     } else {
-      console.log(user)
       response.send({
         status: 'success',
         user: user,
@@ -26,24 +25,29 @@ exports.signIn = function (request, response) {
   });
 };
 
-exports.signUp = (request, response) => {
-  const newUser = new User({
+exports.signUp = function (request, response) {
+  User.findOne({
     email: request.body.email,
-    password: request.body.password,
-  });
-  User.findOne(newUser).exec((err, user) => {
+  }).exec((err, user) => {
     if(err) {
       response.send({
         status: 'fail',
         error: err.toString(),
       });
-    } else if(user) {
+    } else if(user != null) {
       response.send({
         status: 'fail',
         error: 'user alredy exists'
       });
     } else {
+      const newUser = new User({
+        email: request.body.email,
+        password: request.body.password,
+      });
       newUser.save();
+      response.send({
+        status: 'success',
+      });
     }
   });
   // const email=request.body.email;

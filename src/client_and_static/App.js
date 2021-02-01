@@ -7,7 +7,10 @@ import styles from './app.scss'
 function App() {
   return (
     <div className={classNames(styles.backgroundHolder, styles.main)}>
-        <SignInForm onAuth={() => console.log('da')}/>
+        <SignInForm onAuth={(user) => {
+          console.log(user);
+          console.log('authed');
+        }}/>
     </div>
   );
 }
