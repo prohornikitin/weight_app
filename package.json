@@ -27,17 +27,24 @@
   "dependencies": {
     "axios": "^0.21.1",
     "bootstrap": "^4.6.0",
+    "classnames": "^2.2.6",
     "express": "^4.17.1",
     "jquery": "^3.5.1",
+    "mongodb": "^3.6.3",
+    "mongoose": "^5.11.14",
     "popper.js": "^1.16.1",
     "react": "^17.0.1",
-    "react-dom": "^17.0.1"
+    "react-dom": "^17.0.1",
+    "sass": "^1.32.5",
+    "sass-loader": "^10.1.1"
   },
   "babel": {
     "presets": [
       "@babel/env",
       "@babel/react"
     ],
-    "plugins": ["@babel/plugin-proposal-private-methods"]
+    "plugins": [
+      "@babel/plugin-proposal-private-methods"
+    ]
   }
 }
