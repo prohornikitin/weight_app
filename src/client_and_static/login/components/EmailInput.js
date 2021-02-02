@@ -1,7 +1,3 @@
-// var Router = window.ReactRouter.Router;
-// var Route = window.ReactRouter.Route;
-// var hashHistory = window.ReactRouter.hashHistory;
-// var Link = window.ReactRouter.Link;
 import React from 'react'
 import 'bootstrap'
 import $ from 'jquery'
@@ -37,8 +33,8 @@ class EmailInput extends React.Component {
         return this.state.errors == '';
     }
 
-    #getFormattedErrors(password) {
-        const errors = this.#getErrors(password);
+    #getFormattedErrors(email) {
+        const errors = this.#getErrors(email);
         let formatted = '';
         for(const error of errors) {
             formatted += '<p>' + error + '</p>';
@@ -48,9 +44,6 @@ class EmailInput extends React.Component {
 
     #getErrors(email) {
         let errors = [];
-        // if(!email.match('/.+@.+\..+/i')) {
-        //     errors.push('password must contain at least 8 characters');
-        // }
         if(email === '') {
             errors.push('must not be empty')
         } else {

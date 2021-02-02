@@ -1,7 +1,3 @@
-// var Router = window.ReactRouter.Router;
-// var Route = window.ReactRouter.Route;
-// var hashHistory = window.ReactRouter.hashHistory;
-// var Link = window.ReactRouter.Link;
 import React from 'react'
 import 'bootstrap'
 import axios from 'axios'
