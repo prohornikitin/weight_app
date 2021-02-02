@@ -4,17 +4,23 @@ const User = require('./models/User');
 exports.signIn = function (request, response) {
   User.findOne({
     email: request.body.email,
-    password: request.body.password,
   }).exec((err, user) => {
     if(err) {
+      console.log(err.toString());
       response.send({
         status: 'fail',
-        error: err.toString(),
+        error: 'Internal server error, try again later'
       });
-    } else if(!user) {
+    } else if(user == null) {
+      console.log(user)
       response.send({
         status: 'fail',
-        error: 'Invalid email or password',
+        error: 'Invalid email',
+      });
+    } else if(!user.comparePassword(request.body.password))  {
+      response.send({
+        status: 'fail',
+        error: 'password',
       });
     } else {
       response.send({
@@ -40,11 +46,10 @@ exports.signUp = function (request, response) {
         error: 'user alredy exists'
       });
     } else {
-      const newUser = new User({
+      new User({
         email: request.body.email,
         password: request.body.password,
-      });
-      newUser.save();
+      }).save();
       response.send({
         status: 'success',
       });
