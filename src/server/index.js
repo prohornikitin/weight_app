@@ -18,7 +18,7 @@ const path = require('path');
 const bodyParser = require('body-parser');
 
 var app = express();
-app.use(express.static(path.join(__dirname,'../public')));
+app.use(express.static(path.join(__dirname,'../../public')));
 app.use(bodyParser.json());
 
 app.post('/signin', routes.signIn);

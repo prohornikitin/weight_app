@@ -29,24 +29,19 @@ const userSchema = Schema({
 });
 
 
-userSchema.pre('save', (next) => {
-  if (!this.isModified('password')) return next();
 
-  bcrypt.genSalt(SALT_WORK_FACTOR, (err, salt) => {
-    if (err) return next(err);
-
-    bcrypt.hash(this.password, salt, (err, hash) => {
-        if (err) return next(err);
-
-        this.password = hash;
-        next();
-    });
-  });
+userSchema.pre('save', function(next) {
+  return bcrypt.hash(this.password, SALT_WORK_FACTOR)
+  .then(hash => {
+    if (this.isModified('password')) {
+      this.password = hash;
+    }
+  })
 });
 
 
-userSchema.methods.comparePassword = async function(candidatePassword)  {
-  return await bcrypt.compare(candidatePassword, this.password);
+userSchema.methods.comparePassword = function(candidatePassword) {
+  return bcrypt.compare(candidatePassword, this.password);
 };
 
 
