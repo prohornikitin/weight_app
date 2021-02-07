@@ -4,7 +4,7 @@ import $ from 'jquery'
 import PropTypes from 'prop-types';
 
 
-class PasswordInput extends React.Component {
+class EmailInput extends React.Component {
     constructor(props) {
         super(props);
         this.handleInputChange = this.handleInputChange.bind(this);
@@ -26,15 +26,17 @@ class PasswordInput extends React.Component {
             } else {
                 $(id).popover('hide');
             }
+            this.props.onValidityChange(this.state.errors === '');
         });
+        this.props.onChange(event);
     }
 
     isValid() {
         return this.state.errors == '';
     }
 
-    #getFormattedErrors(password) {
-        const errors = this.#getErrors(password);
+    #getFormattedErrors(email) {
+        const errors = this.#getErrors(email);
         let formatted = '';
         for(const error of errors) {
             formatted += '<p>' + error + '</p>';
@@ -42,49 +44,36 @@ class PasswordInput extends React.Component {
         return formatted;
     }
 
-    #getErrors(password) {
+    #getErrors(email) {
         let errors = [];
-        if(password === '') {
+        if(email === '') {
             errors.push('must not be empty')
         } else {
-            if(!password.match('^.*(?=.{8,}).*$')) {
-                errors.push('must contain at least 8 characters');
-            }
-            if (!password.match('^.*(?=.*[A-Z]).*$')) {
-                errors.push('must contain uppercase letters');
-            }
-            if (!password.match('^.*(?=.*[a-z]).*$')) {
-                errors.push('must contain lowercase letters');
-            }
-            if (!password.match('^.*(?=.*[0-9]).*$')) {
-                errors.push('must contain digits');
+            if (!email.match('^.*(?=.*@).*$')) {
+                errors.push("must contain '@'");
             }
         }
         return errors;
     }
-
-    getValue() {
-        return this.state.value;
-    }
     
     render() {
         return (
-                <input type="password" onChange={this.handleInputChange} placeholder="Password" required
-                        id={this.props.id} name={this.props.name} className={this.props.className}
+                <input type="email" onChange={this.handleInputChange} placeholder={"Email address"} required
+                        id={this.props.id} name={this.props.name} className="form-control"
                         data-toggle="popover" data-placement="left" data-html="true" data-content={this.state.errors} data-trigger="manual"/>
         );
     }
 }
 
-PasswordInput.propTypes = {
+EmailInput.propTypes = {
     name: PropTypes.string,
-    id: PropTypes.string
+    id: PropTypes.string,
+    onChange: PropTypes.func,
 };
 
-PasswordInput.defaultProps = {
-    name: 'password',
-    id: 'password',
-    className: ''
+EmailInput.defaultProps = {
+    name: 'email',
+    id: 'email',
 }
 
-export default PasswordInput
+export default EmailInput

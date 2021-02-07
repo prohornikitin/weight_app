@@ -46,7 +46,7 @@ exports.signUp = function (request, response) {
       newUser.save();
       response.send({status: 'success'});
     } else {
-      throw 'user alredy exists';
+      throw 'User alredy exists';
     }
   })
   .catch(err => {

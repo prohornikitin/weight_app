@@ -1,0 +1,24 @@
+.form {
+  width: 40vw;
+  height: 20vw;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+}
+
+.fadeOut {
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0.5s linear, opacity 0.5s linear;
+  transition-delay: 0.5s;
+}
+
+.fadeIn {
+  visibility: visible;
+  opacity: 1;
+  transition: visibility 0.5s linear, opacity 0.5s linear;
+  transition-delay: 0.5s;
+}

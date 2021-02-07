@@ -1,16 +1,19 @@
-import React from 'react'
-import SignInForm from '../login/components/SignInForm/component';
+import React, { useState } from 'react'
+// import SignInForm from '../auth/Form/component';
+import SignInForm from '../auth/Form';
 import classNames from 'classnames'
 import s from './style.scss'
+import Graph from '../Graph/component'
 
 
 function App() {
+  const [isAuthed, setAuthed] = useState(false);
+
+
   return (
     <div className={classNames(s.backgroundHolder, s.main)}>
-        <SignInForm onAuth={(user) => {
-          console.log(user);
-          console.log('authed');
-        }}/>
+        <SignInForm onAuth={() => setAuthed(true)} shown={!isAuthed}/>
+        
     </div>
   );
 }
