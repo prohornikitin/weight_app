@@ -2,6 +2,17 @@ const Schema = require('mongoose').Schema;
 const bcrypt = require('bcrypt');
 const SALT_WORK_FACTOR = 9;
 
+const OneDayStatisticsSchema = Schema({
+  weight: {
+    type: Number,
+    min: 0,
+  },
+  date: {
+    type: String,
+    default: Date.now,
+  },
+});
+
 const userSchema = Schema({
   email: {
     type: String,
@@ -14,18 +25,7 @@ const userSchema = Schema({
     type: String,
     required: true,
   },
-  weightStatistics: [
-    {
-      weight: {
-        type: Number,
-        min: 0,
-      },
-      date: {
-        type: Date,
-        default: Date.now,
-      },
-    }
-  ]
+  weightStatistics: [OneDayStatisticsSchema],
 });
 
 
@@ -41,8 +41,12 @@ userSchema.pre('save', function(next) {
 
 
 userSchema.methods.comparePassword = function(candidatePassword) {
-  return bcrypt.compare(candidatePassword, this.password);
+  return bcrypt.compareSync(candidatePassword, this.password);
 };
+
+userSchema.methods.isNull = function() {
+  return email==='' && password==='' && weightStatistics.length===0;
+}
 
 
   

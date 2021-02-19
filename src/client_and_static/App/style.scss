@@ -1,11 +1,26 @@
 .backgroundHolder {
     background-repeat: no-repeat;
-    background-image: url(background.jpg);
+    background-image: url("background.jpg");
     background-color: #505050;
     background-size: cover;
 }
 
-.main {
+.content {
+    padding: 1%;
+}
+
+.fullscreen {
     width: 100vw;
     height: 100vh;
+}
+
+.authForm {
+    width: 40vw;
+    height: 20vw;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
 }

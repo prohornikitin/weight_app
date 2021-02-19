@@ -23,6 +23,7 @@ app.use(bodyParser.json());
 
 app.post('/signin', routes.signIn);
 app.post('/signup', routes.signUp);
+app.put('/update_user', routes.updateUser);
 
 const port = 7777;
 app.listen(port, () => {
