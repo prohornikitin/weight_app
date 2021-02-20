@@ -1,5 +1,15 @@
+/**
+ * @module
+ * 
+ */
 const User = require('./models/User');
 
+
+/**
+ * Handler for route '/signup'
+ * @param {Object} request - express request Object
+ * @param {Object} response - object used for response sedning
+ */
 exports.signUp = function(request, response) {
   User.findOne({
     email: request.body.email,
@@ -26,10 +36,16 @@ exports.signUp = function(request, response) {
 };
 
 
+/**
+ * Handler for route '/signin'
+ * @param {Object} request - express request Object
+ * @param {Object} response - object used for response sedning
+ */
 exports.signIn = function(request, response) {
   getUserFromDb(request.body.email, request.body.password)
   .then(user => {
     user.password = ''; //for security we don't transfer password hash
+    console.log(user);
     response.send({
       status: 'success',
       user: user,
@@ -45,16 +61,17 @@ exports.signIn = function(request, response) {
 };
 
 
+/**
+ * Handler for route '/update_user'
+ * @param {Object} request - express request Object
+ * @param {Object} response - object used for response sedning
+ */
 exports.updateUser = function(request, response) {
   const user = request.body.user;
   getUserFromDb(user.email, user.password)
   .then(userModel => {
-    console.log(user.weightStatistics);
     userModel.weightStatistics = user.weightStatistics;
-    userModel.save()
-    .catch(err => {
-      console.log(err);
-    });
+    return userModel.save();
   })
   .catch(err => {
     console.log(err);
@@ -62,6 +79,11 @@ exports.updateUser = function(request, response) {
 };
 
 
+/**
+ * Get model of {@link module:server/models/User~userSchema} from database
+ * @param {String} email
+ * @param {String} password
+ */
 function getUserFromDb(email, password)  {
   return User.findOne({
     email: email,

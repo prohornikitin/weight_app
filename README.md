@@ -1,2 +1,2 @@
-# weight_app
-Веб-приложение для контроля веса
+# Weight App
+Single-page application for weight management

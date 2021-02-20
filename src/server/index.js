@@ -1,4 +1,8 @@
+/**
+ * @module
+ */
 const mongoose = require('mongoose');
+
 
 const db_uri = 'mongodb://localhost/weight';
 global.db = mongoose.createConnection(db_uri, {
@@ -9,7 +13,6 @@ global.db = mongoose.createConnection(db_uri, {
   user: "weight_website",
   pass: "1"
 });
-
 
 
 const routes = require('./routes');

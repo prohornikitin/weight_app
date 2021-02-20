@@ -1,18 +1,27 @@
+/**
+ * @module
+ */
 const Schema = require('mongoose').Schema;
 const bcrypt = require('bcrypt');
 const SALT_WORK_FACTOR = 9;
 
+/**
+ * Mongoose Schema for one-day weight statistics
+ */
 const OneDayStatisticsSchema = Schema({
   weight: {
     type: Number,
     min: 0,
   },
   date: {
-    type: String,
-    default: Date.now,
+    type: Number,
+    default: new Date().getTime(),
   },
 });
 
+/**
+ * Mongoose Schema for user
+ */
 const userSchema = Schema({
   email: {
     type: String,
@@ -39,11 +48,18 @@ userSchema.pre('save', function(next) {
   })
 });
 
-
+/**
+ * Compares {@link candidatePassword} and user's(this) password
+ * @param {String} candidatePassword 
+ */
 userSchema.methods.comparePassword = function(candidatePassword) {
   return bcrypt.compareSync(candidatePassword, this.password);
 };
 
+/**
+ * Indicates whether this is {@link NullUser};
+ * @returns {Boolean}
+ */
 userSchema.methods.isNull = function() {
   return email==='' && password==='' && weightStatistics.length===0;
 }

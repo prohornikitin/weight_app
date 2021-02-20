@@ -18,7 +18,9 @@
     "@babel/preset-env": "^7.12.11",
     "@babel/preset-react": "^7.12.10",
     "babel-loader": "^8.2.2",
+    "better-docs": "^2.3.2",
     "css-loader": "^5.0.1",
+    "jsdoc": "^3.6.6",
     "style-loader": "^2.0.0",
     "use-force-update-hook": "^2.0.1",
     "webpack": "^5.19.0",
@@ -32,17 +34,22 @@
     "bcrypt": "^5.0.0",
     "bootstrap": "^4.6.0",
     "classnames": "^2.2.6",
+    "date-fns": "^2.17.0",
     "express": "^4.17.1",
     "jquery": "^3.5.1",
+    "jsdocs": "^1.0.0",
     "mongodb": "^3.6.3",
     "mongoose": "^5.11.14",
     "performance-now": "^2.1.0",
     "popper.js": "^1.16.1",
     "react": "^17.0.1",
+    "react-datetime": "^3.0.4",
     "react-dom": "^17.0.1",
+    "react-nice-dates": "^3.0.7",
     "reactstrap": "^8.9.0",
     "sass": "^1.32.5",
-    "sass-loader": "^10.1.1"
+    "sass-loader": "^10.1.1",
+    "use-force-update": "^1.0.7"
   },
   "babel": {
     "presets": [
