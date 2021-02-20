@@ -19,4 +19,4 @@ function useExistingState(state) {
   ]
 }
 
-export default useExistingState;
+export {useExistingState};

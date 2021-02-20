@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 import s from './style.scss'
 import NullUser from '../NullUser';
 import TodayWeightForm from './TodayWeightForm';
-import useExistingState from '../hooks/useExistingState'
+import {useExistingState} from '../custom_hooks'
 import WeightGraphWithControls from '../WeightGraphWeithControls/WeightGraphWithControls';
 
 /**
